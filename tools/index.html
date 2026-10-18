@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tools</title>
+    <style>
+      main {
+        display: flex;
+        flex-direction: column;
+      }
+      section {
+        border: 2px solid red;
+        padding: 1rem;
+        display: flex;
+      }
+      canvas {
+        image-rendering: pixelated;
+        border: 2px solid purple;
+        box-sizing: border-box;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="main">
+      <section class="screen"></section>
+    </main>
+    <script type="module" src="./sprite.js"></script>
+  </body>
+</html>
