@@ -103,7 +103,7 @@ function main() {
       newInfo.bgUrl = null;
       view.broken++;
     } else {
-      newInfo.bgUrl = `url(/assets/images/cracks_a_${newInfo.idx}.png)`;
+      newInfo.bgUrl = `url(../../assets/images/cracks_a_${newInfo.idx}.png)`;
       blocks.set(wpos, newInfo);
     }
 

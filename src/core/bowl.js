@@ -20,7 +20,7 @@ export class JVBowl {
     this.rootEl = rootEl;
     this.prevT = -1;
     this.running = false;
-    this.stepT = 0.01;
+    this.stepT = 0.025;
     this.boxes = [];
 
     this.animate = this._animate.bind(this);
