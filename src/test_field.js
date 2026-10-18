@@ -28,7 +28,7 @@ function main() {
     caveCount: 0,
     broken: 0,
   };
-  const fallThld = 0.1;
+  const fallThld = 0.5;
   const totalCount = view.size[0] * view.size[1];
 
   const field = new JField(seed, view.size[0]);
