@@ -17,10 +17,11 @@ function main() {
 
   const seed = 42;
   const view = {
-    size: [5, 5],
+    size: [4, 4],
     pos: [0, 0],
     caveCount: 0,
     broken: 0,
+    score: 0,
   };
   const fallThld = 0.5;
   const totalCount = view.size[0] * view.size[1];
@@ -79,6 +80,12 @@ function main() {
     newInfo.idx += step;
     if (newInfo.name.startsWith("gem")) {
       const b = bowl.addBox();
+      setTimeout(() => {
+        view.score += 100 + Math.floor(field.rng.random() * 10) * 10
+        const scoreEl = document.getElementById('score');
+        scoreEl.textContent = `$${view.score}`;
+        bowl.disposeBox(b);
+      }, 5000);
       b.url = newInfo.bgUrl;
       newInfo.name = "cave";
       newInfo.bgUrl = null;

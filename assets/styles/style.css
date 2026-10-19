@@ -58,3 +58,19 @@ body {
 .controls {
   max-width: 200px;
 }
+.main {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.bowl-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}
+.wrapper {
+  position: relative;
+}

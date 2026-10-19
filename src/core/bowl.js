@@ -38,10 +38,11 @@ export class JVBowl {
     this.running = false;
   }
   addBox(pos = null) {
-    const a = (Math.random() + 0.5) * Math.PI * 0.5;
+    // const a = (Math.random() + 0.5) * Math.PI * 0.5;
+    const a = Math.random() * Math.PI * 2;
     const v = [0, 0.8];
     pos ??= jutils.rotateV(v, a);
-    const box = new jverlet.JBox(pos, [0.1, 0.1]);
+    const box = new jverlet.JBox(pos, [0.2, 0.2]);
     box.addToSolver(this.solver);
     box.objects.forEach((vobj) => {
       vobj.color = "purple";
@@ -68,11 +69,11 @@ export class JVBowl {
   _init() {
     this.solver = new jverlet.Solver({ gravity: [10, 0] });
     this.renderer = new AbsRenderer(this.rootEl);
-    this.renderer.containerEl.classList.add("bg-image");
-    this.renderer.containerEl.style.setProperty(
-      "--bg-url",
-      `url(${imageBagUrl})`,
-    );
+    // this.renderer.containerEl.classList.add("bg-image");
+    // this.renderer.containerEl.style.setProperty(
+    //   "--bg-url",
+    //   `url(${imageBagUrl})`,
+    // );
     this.renderer.containerEl.addEventListener("click", () => this._shuffle());
   }
   _animate(t) {

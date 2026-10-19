@@ -118,7 +118,9 @@ export class Solver {
 
   applyGravity() {
     this.objects.forEach((obj) => {
-      obj.accelerate(this.gravity);
+      // obj.accelerate(this.gravity);
+      const g = jutils.mulS(jutils.normalizeV(obj.currPos), -10);
+      obj.accelerate(g);
       obj.force && obj.accelerate(obj.force);
     });
   }
