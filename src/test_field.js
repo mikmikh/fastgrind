@@ -11,12 +11,6 @@ jutils.jrange(3).forEach((ri) =>
   }),
 );
 
-// class JDig {
-//   constructor(seed) {
-//     this.field = new JField(seed);
-//   }
-// }
-
 function main() {
   const bowl = new JVBowl(document.getElementById("bowl"));
   bowl.start();
@@ -62,8 +56,8 @@ function main() {
   }
 
   let gemProbs = [urls.length, ...[...new Array(urls.length)].map(() => 1)];
-      const gemProbsS = gemProbs.reduce((s,x) => s+x);
-      gemProbs = gemProbs.map((v) => v/gemProbsS)
+  const gemProbsS = gemProbs.reduce((s, x) => s + x);
+  gemProbs = gemProbs.map((v) => v / gemProbsS);
 
   // fall = shift pos[0] down by size[0]
   function _handleClickBlock(wpos) {
@@ -83,28 +77,31 @@ function main() {
       step = 3;
     }
     newInfo.idx += step;
-    if (newInfo.idx > 5) {
-      const resource = field.resourceAt(wpos, gemProbs);
-      console.log(resource);
-      if (!resource) {
-        newInfo.name = "cave";
-        newInfo.bgUrl = null;
-        view.broken++;
-      } else {
-        newInfo.name = `gem_${resource - 1}`;
-        newInfo.bgUrl = `url(${urls[resource - 1]})`;
-        newInfo.idx = null;
-      }
-      blocks.set(wpos, newInfo);
-    } else if (newInfo.name.startsWith("gem")) {
+    if (newInfo.name.startsWith("gem")) {
       const b = bowl.addBox();
       b.url = newInfo.bgUrl;
       newInfo.name = "cave";
       newInfo.bgUrl = null;
       view.broken++;
-    } else {
-      newInfo.bgUrl = `url(../../assets/images/cracks_a_${newInfo.idx}.png)`;
       blocks.set(wpos, newInfo);
+    } else {
+      if (newInfo.idx > 5) {
+        const resource = field.resourceAt(wpos, gemProbs);
+        console.log(resource);
+        if (!resource) {
+          newInfo.name = "cave";
+          newInfo.bgUrl = null;
+          view.broken++;
+        } else {
+          newInfo.name = `gem_${resource - 1}`;
+          newInfo.bgUrl = `url(${urls[resource - 1]})`;
+          newInfo.idx = null;
+        }
+        blocks.set(wpos, newInfo);
+      } else {
+        newInfo.bgUrl = `url(../../assets/images/cracks_a_${newInfo.idx}.png)`;
+        blocks.set(wpos, newInfo);
+      }
     }
 
     function setShiver(idx = null) {

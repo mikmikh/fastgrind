@@ -17,7 +17,8 @@ import * as jutils from "./utils.js";
 // vel = vel + acc * dt
 
 const maxVelMag = 1;
-const frictionFactor = 0.96;
+// const frictionFactor = 0.96;
+const frictionFactor = 0.9;
 
 export class VerletObject {
   constructor(pos, radius = 25) {
