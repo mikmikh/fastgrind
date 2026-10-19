@@ -76,6 +76,7 @@ export class JVBowl {
     this.renderer.containerEl.addEventListener("click", () => this._shuffle());
   }
   _animate(t) {
+    t*=0.001;
     if (!this.running) {
       return;
     }
@@ -84,12 +85,16 @@ export class JVBowl {
     if (this.prevT < 0) {
       this.prevT = t;
     }
-    const dt = (t - this.prevT) * 0.001;
-    if (dt < this.stepT) {
-      return;
+    while (t - this.prevT > this.stepT) {
+      this.prevT += this.stepT;
+      this._update(this.stepT);
     }
-    this.prevT = t;
-    this._update(this.stepT);
+    // const dt = (t - this.prevT);
+    // if (dt < this.stepT) {
+    //   return;
+    // }
+    // this.prevT = t;
+    
     this._render();
   }
   _update(dt) {
@@ -98,17 +103,17 @@ export class JVBowl {
     this.boxes.forEach((box, bi) => {
       const angleR = box.getAngle();
       const angle = angleR; // `${angleR}rad`;
-      box.objects.forEach((vobj) => {
-        const size = [vobj.radius, vobj.radius];
-        const pos = _getViewPos(vobj.pos, size);
-        const info = {
-          pos,
-          size,
-          angle,
-          color: "rgba(0,255,0,0.15)",
-        };
-        this.renderer.key2info[vobj.key] = info;
-      });
+      // box.objects.forEach((vobj) => {
+      //   const size = [vobj.radius, vobj.radius];
+      //   const pos = _getViewPos(vobj.pos, size);
+      //   const info = {
+      //     pos,
+      //     size,
+      //     angle,
+      //     color: "rgba(0,255,0,0.15)",
+      //   };
+      //   this.renderer.key2info[vobj.key] = info;
+      // });
 
       const wpos = box.getPosition();
       const pos = _getViewPos(wpos, box.size);
