@@ -1,6 +1,7 @@
 body {
-  background-color: rgb(38, 58, 44);
+  background-color: #121010;
   color: white;
+  touch-action: manipulation;
 }
 .cell {
   /* --bg-color: burlywood; */

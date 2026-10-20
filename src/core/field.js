@@ -54,10 +54,10 @@ const noise = {
 export const BLOCK_TO_COLOR = {
   soil: "#a6681b",
   stone: "#555452",
-  ore: "#b8f1fb",
+  ore: "#F2C230",
   sand: "#ffe4c9",
   fossil: "#a75c00",
-  dirt: "#4b2c07",
+  dirt: "#7A5230",
   bugs: "#00fd26",
   plant: "#0b4800",
   mushroom: "#9b00ca",

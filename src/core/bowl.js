@@ -67,7 +67,7 @@ export class JVBowl {
     box.removeFromSolver(this.solver);
   }
   _init() {
-    this.solver = new jverlet.Solver({ gravity: [10, 0] });
+    this.solver = new jverlet.Solver({ gravity: -10 });
     this.renderer = new AbsRenderer(this.rootEl);
     // this.renderer.containerEl.classList.add("bg-image");
     // this.renderer.containerEl.style.setProperty(
@@ -77,11 +77,15 @@ export class JVBowl {
     this.renderer.containerEl.addEventListener("click", () => this._shuffle());
   }
   _animate(t) {
-    t*=0.001;
+    t *= 0.001;
     if (!this.running) {
       return;
     }
     requestAnimationFrame(this.animate);
+    if (!this.boxes.length) {
+      this.prevT = t;
+      return;
+    }
 
     if (this.prevT < 0) {
       this.prevT = t;
@@ -95,7 +99,7 @@ export class JVBowl {
     //   return;
     // }
     // this.prevT = t;
-    
+
     this._render();
   }
   _update(dt) {

@@ -92,7 +92,6 @@ export class Link {
 export class Solver {
   constructor(config) {
     this.config = config;
-    this.gravity = [...config.gravity];
     this.objects = [];
     this.links = [];
     this.size = [1, 1];
@@ -118,9 +117,13 @@ export class Solver {
 
   applyGravity() {
     this.objects.forEach((obj) => {
-      // obj.accelerate(this.gravity);
-      const g = jutils.mulS(jutils.normalizeV(obj.currPos), -10);
-      obj.accelerate(g);
+      if (Array.isArray(this.config.gravity)) {
+        obj.accelerate(this.config.gravity);
+      } else {
+        const g = jutils.mulS(jutils.normalizeV(obj.currPos), this.config.gravity);
+        obj.accelerate(g);
+      }
+
       obj.force && obj.accelerate(obj.force);
     });
   }
